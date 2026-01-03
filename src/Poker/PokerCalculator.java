@@ -1,13 +1,12 @@
 package Poker;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class PokerCalculator {
 
     public static final int HAND_SIZE = 5;
+    public static final int COMMUNITY_SIZE = 5;
     public static final int HOLE_SIZE = 2;
 
     public static Hand getTexasHand(Card[] arr1, Card[] arr2) {
@@ -16,7 +15,7 @@ public class PokerCalculator {
 
         Card[] sevenCards = combineArrays(arr1, arr2);
         Arrays.sort(sevenCards);
-        ArrayList<Hand> hands = new ArrayList<>();
+        Hand best = null;
 
         for (int[] c : combos) {
             // combination
@@ -27,13 +26,13 @@ public class PokerCalculator {
                     sevenCards[c[3]],
                     sevenCards[c[4]]
             };
-
             Hand current = getFiveCardHand(fiveCards);
-            hands.add(current);
+            if ( best == null || current.compareTo(best) > 0) {
+                best = current;
+            }
         }
         // return the best hand out of 21 hands -> C(7,5) = 21
-        Collections.sort(hands);
-        return hands.getLast();
+        return best;
     }
 
     public static Hand getFiveCardHand(Card[] fiveCards) {

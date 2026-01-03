@@ -76,7 +76,7 @@ public class Hand implements Comparable<Hand> {
                 values.add(Rank.JACK);
                 values.add(Rank.TEN);
             }
-        };
+        }
 
     }
 
@@ -121,17 +121,6 @@ public class Hand implements Comparable<Hand> {
 
     @Override
     public String toString() {
-        return switch (this.ranking) {
-            case HIGH_CARD ->       "High Card";
-            case PAIR ->            "Pair";
-            case TWO_PAIR ->        "Two Pair";
-            case THREE_OF_A_KIND -> "Three of a Kind";
-            case STRAIGHT ->        "Straight";
-            case FLUSH ->           "Flush";
-            case FULL_HOUSE ->      "Full House";
-            case FOUR_OF_A_KIND ->  "Four of a Kind";
-            case STRAIGHT_FLUSH ->  "Straight Flush";
-            case ROYAL_FLUSH ->     "Royal Flush";
-        };
+        return this.ranking.toString();
     }
 }
